@@ -1,0 +1,82 @@
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+  horizontalListSortingStrategy
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useState, type AnyActionArg } from "react";
+import widgetsData from "../data/widgets";
+import Widget from "./Widget";
+
+type prop={
+  id:string;
+  title:string;
+  description: string
+}
+
+function SortableItem({ id, title, description }: prop) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="bg-white p-4 shadow rounded-lg w-64"
+    >
+      <Widget title={title} description={description} />
+    </div>
+  );
+}
+
+export default function Dashboard() {
+  const [widgets, setWidgets] = useState(widgetsData);
+
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  function handleDragEnd(event: any) {
+    const { active, over } = event;
+
+    if (active.id !== over?.id) {
+      const oldIndex = widgets.findIndex((item) => item.id === active.id);
+      const newIndex = widgets.findIndex((item) => item.id === over?.id);
+
+      setWidgets((items) => arrayMove(items, oldIndex, newIndex));
+    }
+  }
+
+  return (
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+    >
+      <SortableContext
+        items={widgets.map((w) => w.id)}
+        strategy={verticalListSortingStrategy}
+      >
+        <div className="flex flex-col gap-4">
+          {widgets.map((widget) => (
+            <SortableItem key={widget.id} id={widget.id} title={widget.title} description={widget.description} />
+          ))}
+        </div>
+      </SortableContext>
+    </DndContext>
+  );
+}
