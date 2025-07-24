@@ -47,7 +47,6 @@ function SortableItem({ id, title, description }: prop) {
 
 export default function Dashboard() {
   const [widgets, setWidgets] = useState(widgetsData);
-
   const sensors = useSensors(useSensor(PointerSensor));
 
   function handleDragEnd(event: any) {
@@ -69,9 +68,10 @@ export default function Dashboard() {
     >
       <SortableContext
         items={widgets.map((w) => w.id)}
-        strategy={verticalListSortingStrategy}
+        strategy={horizontalListSortingStrategy}
       >
-        <div className="flex flex-col gap-4">
+        {/* this is the styling for drag and drops */}
+        <div className="grid grid-cols-3 gap-4">
           {widgets.map((widget) => (
             <SortableItem key={widget.id} id={widget.id} title={widget.title} description={widget.description} />
           ))}

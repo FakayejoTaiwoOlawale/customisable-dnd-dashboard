@@ -1,4 +1,6 @@
 import Dashboard from "./components/Dashboard";
+import Searchbar from "./components/Searchbar";
+import widgets from "./data/widgets";
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
 
       <h1 className="text-3xl font-bold mb-6">🧱 Drag & Drop Dashboard</h1>
       <Dashboard />
+      <Searchbar data={widgets}/>
       </div>
     </main>
   );
