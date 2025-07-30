@@ -5,6 +5,9 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+
+
+
 import {
   arrayMove,
   SortableContext,
@@ -16,16 +19,24 @@ import { CSS } from "@dnd-kit/utilities";
 import { useState, type AnyActionArg } from "react";
 import widgetsData from "../data/widgets";
 import Widget from "./Widget";
+import { callback } from "chart.js/helpers";
+
+
+
+import {z} from zod;
 
 type prop={
   id:string;
   title:string;
   description: string
 }
+   
 
 function SortableItem({ id, title, description }: prop) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
+
+    console.log(transform)
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -34,6 +45,8 @@ function SortableItem({ id, title, description }: prop) {
 
   return (
     <div
+
+    //this is what makes us to be able to select the div
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -80,3 +93,20 @@ export default function Dashboard() {
     </DndContext>
   );
 }
+
+
+function SortableItem({id,title,description}:prop){
+  const {listeners,attributes,transform,transition}
+}
+
+
+//creating a drag and drop dashbboard
+//first define the context
+
+<DndContext>
+  <SortableContext logic="verticalStrategy">
+    <SortableItem item={}>
+
+    </SortableItem>
+  </SortableContext>
+</DndContext>

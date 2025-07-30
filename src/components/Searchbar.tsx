@@ -12,6 +12,7 @@ interface SearchBarProps{
   data:WidgetProp[]
 }
 
+
 //this line is for defining the type of data that the function would be receiving as an arguement
 const Searchbar: React.FC<SearchBarProps> = ({data}) => {
 
@@ -26,7 +27,7 @@ const Searchbar: React.FC<SearchBarProps> = ({data}) => {
       item.title.toLowerCase().includes(lowercase);
     });
     setFilteredWidgets(searcdWidget);
-  },[query, filteredWidgets])
+  },[query, data])
 
   // //this is for specifying the type of event..you know how typescript can be
   // const filterTask=(e: ChangeEvent<HTMLInputElement>)=>{
