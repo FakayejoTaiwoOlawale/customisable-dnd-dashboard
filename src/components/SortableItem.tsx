@@ -8,14 +8,14 @@ const todoSchema=()={
 
 const useTodo=create(state)=>{
     isCompleted:false,
-    remove:(state)=>{console.log("this has been removed")}
+    remove:(state)=>{(state)=>{Array.prototype(index)}}
 }
 
 
 const SortableItem = () => {
   return (
     <div>
-      
+      <h1>`Sortable Item</h1>
     </div>
   )
 }

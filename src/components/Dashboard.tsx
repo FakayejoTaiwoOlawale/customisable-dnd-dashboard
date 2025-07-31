@@ -19,11 +19,10 @@ import { CSS } from "@dnd-kit/utilities";
 import { useState, type AnyActionArg } from "react";
 import widgetsData from "../data/widgets";
 import Widget from "./Widget";
-import { callback } from "chart.js/helpers";
 
 
 
-import {z} from zod;
+
 
 type prop={
   id:string;
@@ -95,18 +94,6 @@ export default function Dashboard() {
 }
 
 
-function SortableItem({id,title,description}:prop){
-  const {listeners,attributes,transform,transition}
-}
-
 
 //creating a drag and drop dashbboard
 //first define the context
-
-<DndContext>
-  <SortableContext logic="verticalStrategy">
-    <SortableItem item={}>
-
-    </SortableItem>
-  </SortableContext>
-</DndContext>
