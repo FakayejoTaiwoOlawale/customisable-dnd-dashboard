@@ -1,16 +1,17 @@
 import { create } from "zustand";
 import { Widget } from "../utils/Schema";
 import widgets from "../data/widgets";
+import Dashboard from "../components/Dashboard";
 
-type DashboardStore=create({
+type DashboardStoreProps={
     widgets:Widget[],
     //this is to say that we are not returning anything
-    setWidgets:create(widgets:widgets[])=>void;
+    setWidgets:(widgets:Widget[])=>void;
 
+}
+
+export default DashBoardStore=((create)<DashboardStoreProps>)=>{
+widgets:[],
+setWidgets:(widgets)=>(set(widgets))
 })
-
-const DashboardStore=create<Dashboard>((set)=>({
-    widget:[],
-    useWidget:(widget)=>set({widget})
-}))
 
